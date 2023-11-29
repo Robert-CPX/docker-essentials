@@ -10,22 +10,22 @@ import express from "express";
 import { Sequelize, DataTypes } from "sequelize";
 const app = express();
 
-// --- Configuration variables.
+// --- Environment / Config variables.
 // Address of the MQTT broker, we know the address will be localhost because we are running the container in our computer locally.
-const STREAMRADDRESS = "localhost";
+const STREAMRADDRESS = process.env.STREAMRADDRESS;
 
 // Port of the MQTT broker, we know it will be 1883 because we have it specified it in the docker compose file.
-const STREAMRPORT = 1883;
-const STREAMRUSER = "robert";
-const STREAMRAPIKEY = "MzJhYTM4NTY5ZWQ4NGU0Yzk3Y2E5ZWYzNjc2OGMxNzA";
-const STREAMRTOPIC = "0x7030f4D0dC092449E4868c8DDc9bc00a14C9f561/streamr_chat";
+const STREAMRPORT = Number(process.env.STREAMRPORT);
+const STREAMRUSER = process.env.STREAMRUSER;
+const STREAMRAPIKEY = process.env.STREAMRAPIKEY;
+const STREAMRTOPIC = process.env.STREAMRTOPIC;
 
 // Database credentials and table name, we know the database will have these credentials because we will specify them in the docker compose file ( SPOILERS :D ).
-const DBADDRESS = "localhost";
-const DBPORT = 5432;
-const DBNAME = "chatdb";
-const DBUSER = "root";
-const DBPASSWORD = "root";
+const DBADDRESS = process.env.DBADDRESS;
+const DBPORT = Number(process.env.DBPORT);
+const DBNAME = process.env.DBNAME;
+const DBUSER = process.env.DBUSER;
+const DBPASSWORD = process.env.DBPASSWORD;
 
 // --- Main
 // Connect to the MQTT Streamr broker

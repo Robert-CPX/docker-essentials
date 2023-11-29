@@ -8,3 +8,39 @@ services:
       - "1883:1883"
     volumes:
       - ./streamr:/home/streamr/.streamr
+  # https://hub.docker.com/_/postgres
+  postgres:
+    image: postgres
+    container_name: "postgres_database"
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: chatdb
+  # https://hub.docker.com/_/adminer
+  adminer:
+    image: adminer
+    container_name: "adminer_interface"
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+  # The following runs the nodechatlogs Dockerfile.
+  logger:
+    build: nodechatlogs/
+    container_name: "logger_service"
+    ports:
+      - 3000:3000
+    environment:
+      STREAMRADDRESS: streamr_node
+      STREAMRUSER: robert
+      STREAMRAPIKEY: MzJhYTM4NTY5ZWQ4NGU0Yzk3Y2E5ZWYzNjc2OGMxNzA
+      STREAMRTOPIC: 0x7030f4D0dC092449E4868c8DDc9bc00a14C9f561/streamr_chat
+      DBADDRESS: postgres_database
+      DBNAME: chatdb
+      DBUSER: root
+      DBPASSWORD: root
+    depends_on:
+      - streamrnode
+      - postgres
