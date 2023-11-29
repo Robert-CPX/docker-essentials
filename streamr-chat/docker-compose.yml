@@ -1,0 +1,10 @@
+version: "3"
+services:
+  # The following is equivalent to: docker run --name streamr_node -v ./streamr:/home/streamr/.streamr -p 1883:1883 streamr/broker-node:latest
+  streamrnode:
+    image: "streamr/broker-node:latest"
+    container_name: "streamr_node"
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./streamr:/home/streamr/.streamr

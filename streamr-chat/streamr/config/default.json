@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schema.streamr.network/config-v2.schema.json",
+    "client": {
+        "auth": {
+            "privateKey": "0xdf60c41b25b41de879694a9e937773be8d3570d72740ae351043e3a9cfca428e"
+        }
+    },
+    "plugins": {
+        "mqtt": {}
+    },
+    "apiAuthentication": {
+        "keys": [
+            "MzJhYTM4NTY5ZWQ4NGU0Yzk3Y2E5ZWYzNjc2OGMxNzA"
+        ]
+    }
+}
